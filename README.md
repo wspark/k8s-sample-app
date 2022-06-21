@@ -1,1 +1,20 @@
 # k8s-sample-app
+
+sudo kubeadm init  --pod-network-cidr=192.168.0.0/16 --upload-certs --control-plane-endpoint=wspark-kube-mas01
+
+kubeadm join wspark-kube-mas01:6443 --token uoha55.g7mswz8z2n94sosk --discovery-token-ca-cert-hash sha256:b186bd08e160d4cabf959091b7c1f6be3ff623986f9e7bea852938cd10fb00f0
+
+
+sysctl -w net.ipv6.conf.all.disable_ipv6=0
+sysctl -w net.ipv6.conf.default.disable_ipv6=0
+sysctl -w net.ipv6.conf.tun0.disable_ipv6=0
+sysctl -p
+
+eyJhbGciOiJSUzI1NiIsImtpZCI6ImprbkxvaEM2OFZTMzVzODFzeDZpWDc1NlVqR3JpZW5PbGRfdmdsSTRORFUifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjU1ODIwNjc1LCJpYXQiOjE2NTU4MTcwNzUsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJ3c3BhcmstYWRtaW4iLCJ1aWQiOiJkNmI2YWQxMy1hMzY0LTRjYzYtOTRiZC0zZTRmZWE1ZGVjODgifX0sIm5iZiI6MTY1NTgxNzA3NSwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOndzcGFyay1hZG1pbiJ9.asPlHwCxhQI9HkFLsADCxNUSyNHh6E_jmNrGDgxgSYYMNNUDAsmeRfZsvLpCtoM-nueZdj5hdI008nQI7TdrmAzGBJNTbAFu_YmRb_c7d5iitlpLFULZ3pzpQJqGy1NZbTg8KF2fF2hRKs6GMgTfDxCMwJsgaN8-eUwyfLFbNBvAK01psMyZBBceXmzjVNo5VWu8-NdJoT2yWmFsG6hO3KtqpFe_bwCiar0GPj1zbR1mq8SvdyHJsGRjcmt0WuvPkhhQeE4Xti4JA3WbER5XBs4aRBrEpZy0vJkeAPlJB7fLwzi8AyyupnunVkFz-Ng341CJMOdyYycgbyg8VJCOJw
+
+
+
+spring.datasource.url=jdbc:mysql://10.65.40.100:3306/wspark
+spring.datasource.username=root
+spring.datasource.password=rplinux
+spring.jpa.hibernate.ddl-auto=update
