@@ -1,6 +1,5 @@
 package com.example.springboot.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
