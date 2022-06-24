@@ -1,6 +1,8 @@
 ## grafana 구성
 
 ### grafana 설치
+
+#### grafana helm repo 추가
 ```text
 # helm 으로 repo 추가 및 설치
 $ helm repo add grafana https://grafana.github.io/helm-charts
