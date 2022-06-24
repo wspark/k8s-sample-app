@@ -1,7 +1,7 @@
-# grafana 구성
+## grafana 구성
 
-## grafana 설치
-```
+### grafana 설치
+```text
 # helm 으로 repo 추가 및 설치
 $ helm repo add grafana https://grafana.github.io/helm-charts
 $ helm repo list 
@@ -24,8 +24,8 @@ $ kubectl edit deployment grafana -n monitoring
 126           claimName: grafana
 
 ```
-## grafana dashboard
+### grafana dashboard
 
 
-## grafana alert설정
+### grafana alert설정
 
