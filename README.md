@@ -18,3 +18,6 @@ spring.datasource.url=jdbc:mysql://10.65.40.100:3306/wspark
 spring.datasource.username=root
 spring.datasource.password=rplinux
 spring.jpa.hibernate.ddl-auto=update
+
+LINE token
+8N6FMk3P2lb78NA1l0IC3m5Hrq2560gq8bhFuOfSK8F
