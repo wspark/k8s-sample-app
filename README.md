@@ -52,10 +52,10 @@
 ## API 확인
 
 * Author 추가
-<img src="images/spring-api-post.jpg" align="center" />
+<img src="./springboot-sample/images/spring-api-post.jpg" align="center" />
 
 * Author 리스트 확인
-<img src="images/spring-api-get.jpg" align="center" />
+<img src="./springboot-sample/images/spring-api-get.jpg" align="center" />
 
 ## Custom API Endpoint 추가
 
