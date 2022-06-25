@@ -72,16 +72,13 @@ management.endpoints.web.exposure.include=health,info,prometheus //추가
 * Timed 어노테이션을 Controller 단에 추가하여 API 메서드의 수행시간을 알 수 있음
 
 ```text
-
+LibraryController.java
 import io.micrometer.core.annotation.Timed;
 
-    @Timed(value = "get-book")    //추가부분으로 get-book으로 prometheus가 수집
-    @GetMapping("/book")
-    public ResponseEntity readBooks(@RequestParam(required = false) String isbn) {
-        if (isbn == null) {
-            return ResponseEntity.ok(libraryService.readBooks());
-        }
-        return ResponseEntity.ok(libraryService.readBook(isbn));
+    @Timed(value = "get-author") //추가부분으로 get-author으로 prometheus가 수집
+    @GetMapping("/author")
+    public ResponseEntity<List<Author>> readAuthors () {
+        return ResponseEntity.ok(libraryService.readAuthors());
     }
 ```
 
@@ -108,9 +105,9 @@ import io.micrometer.core.annotation.Timed;
  
 ### Prometheus 수집확인
 
-* prometheus dashboard 접속
+* prometheus dashboard 접속 -> Target 
 <img src="./springboot-sample/images/spring-prometheus-target.jpg" align="center" />
 
 
-* custom metric 확인
+* custom metric 확인(어플리케이션에서 제공되는 metric)
 <img src="./springboot-sample/images/spring-prometheus-custom-metric.jpg" align="center" />
