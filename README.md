@@ -1,9 +1,6 @@
-# k8s 환경에서 Prometheus 기반 모니터링 환경구성
+# k8s 환경에서 SpringBoot,Prometheus 모니터링 환경구성
 
 ## k8s 구성도
-
-
-
 
 
 
@@ -97,8 +94,18 @@ spring.jpa.hibernate.ddl-auto=update
 # springboot pom.xml경로에서 maven 빌드
 ./mvnw pacakge
 ```
+* Dockerfile
+```text
+# 소스를 내부 컨테이너에 복사하여 java로 기동
+FROM wspark83/springboot:openjdk8
+ARG JAR_FILE=target/springboot-0.0.1-SNAPSHOT.jar
 
-* openjdk8 Base이미지에 springboot 배포용 소스 탑재하여 컨테이너 이미지빌드
+COPY ${JAR_FILE} app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
+```
+
+* 컨테이너 이미지 빌드하고 이미지저장소에 Push
 
 ```text
 # 환경변수 확인(이미지 Repository/IMAGE_NAME/TAG) 
@@ -120,16 +127,9 @@ buildah push  ${REGISTRY}/${IMAGE_NAME}:${TAG}
 #build.sh 실행
 $ ./build.sh
 
-# Dockerfile
-# 소스를 내부 컨테이너에 복사하여 java로 기동
-FROM wspark83/springboot:openjdk8
-ARG JAR_FILE=target/springboot-0.0.1-SNAPSHOT.jar
-
-COPY ${JAR_FILE} app.jar
-
-ENTRYPOINT ["java","-jar","/app.jar"]
+- buildah 실행안되는 경우 binary 설치 필요(podman/docker로 변경가능)
 ```
-* buildah 실행안되는 경우 binary 설치 필요(podman/docker로 변경가능)
+
 
 ### k8s에서 배포하기
 
