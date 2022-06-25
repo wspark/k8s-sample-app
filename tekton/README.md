@@ -92,7 +92,7 @@ tekton ci/cd 구성에 필요한 task를 수행순서에 따라 pipeline을 생�
 
 ```text
 # pipeline 생성
-$ kubectl create -f pipeline.yaml
+$ kubectl create -f pipeline.yaml -n tekton-pipelines
 ```
 
 ```text
