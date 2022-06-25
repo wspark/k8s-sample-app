@@ -90,6 +90,84 @@ sudo tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
 
 tekton ci/cd 구성에 필요한 task를 엮어서 하나의 pipeline을 생성하여 소스Clone -> maven 빌드 -> 이미지 빌드/푸시(dockerhub) -> k8s 배포 순으로 작성함.
 
+```text
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  generation: 5
+  name: tekton-pipeline-demo
+spec:
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: 'https://github.com/wspark/k8s-sample-app'
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: pipeline-shared-data
+    - name: maven
+      params:
+        - name: CONTEXT_DIR
+          value: "springboot-sample"
+        - name: GOALS
+          value:
+            - package 
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: Task
+        name: maven
+      workspaces:
+        - name: source
+          workspace: pipeline-shared-data
+        - name: maven-settings
+          workspace: pipeline-shared-data
+    - name: buildah
+      params:
+        - name: IMAGE
+          value: docker.io/wspark83/springboot:demo-v1.3
+        - name: STORAGE_DRIVER
+          value: overlay
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: springboot-sample
+        - name: TLSVERIFY
+          value: 'false'
+        - name: FORMAT
+          value: oci
+        - name: SKIP_PUSH
+          value: 'false'
+      runAfter:
+        - maven
+      taskRef:
+        kind: Task
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: pipeline-shared-data
+        - name: sslcertdir
+          workspace: pipeline-shared-data
+    - name: kubenetes-deploy
+      params:
+        - name: script
+          value: "kubectl set image deployment/springboot-demo springboot=docker.io/wspark83/springboot:demo-v1.3 -n wspark"
+      runAfter:
+        - buildah
+      taskRef:
+        kind: Task
+        name: kubernetes-actions
+      workspaces:
+        - name: kubeconfig-dir
+          workspace:  pipeline-shared-data
+  workspaces:
+    - name: pipeline-shared-data
+
+```
+
 * git-clone task
 ```text
 params.url: git 저장소 주소
@@ -116,7 +194,7 @@ Ex) params.DOCKERFILE: ./Dockerfile
 * kubernetes-actions task 
 ```text
 params.script: kubectl 커맨드를 같이 수행할 파라미터
-Ex) params.script: kubectl set image deployment springboot springboot=docker.io/wspark83/springboot:demo-v1.2 --namespace wspark
+Ex) params.script: kubectl set image deployment/springboot-demo springboot=docker.io/wspark83/springboot:demo-v1.3 -n wspark
 ```
 
 ### tekton pipelinerun/log
