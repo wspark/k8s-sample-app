@@ -142,32 +142,3 @@ curl 10.65.41.81:31236/api/library/author
 * Author 리스트 확인
 <img src="./springboot-sample/images/spring-api-get.jpg" align="center" />
 
-
-### Prometheus 설정
-
-* prometheus가 어플리케이션의 metric을 수집할 어플리케이션 target 정보를 입력함.
-* helm 으로 설치시 chart의 value.yaml에 추가하며 기본 설치시 prometheus.yaml 에 추가한다.
-```text
-    scrape_configs:
-      - job_name: prometheus
-        static_configs:
-          - targets:
-            - localhost:9090
-        //추가부분
-      - job_name: k8s-sample-app
-        metrics_path: /actuator/prometheus
-        static_configs:
-          - targets:
-            -  10.65.41.81:31236
-```
-
-* Prometheus 설치는 [Prometheus 구성](http://github.com/wspark/k8s-sample-app/tree/main/prometheus/) 참고
- 
-### Prometheus 수집확인
-
-* prometheus dashboard 접속 -> Target 
-<img src="./springboot-sample/images/spring-prometheus-target.jpg" align="center" />
-
-
-* custom metric 확인(어플리케이션에서 제공되는 metric)
-<img src="./springboot-sample/images/spring-prometheus-custom-metric.jpg" align="center" />
