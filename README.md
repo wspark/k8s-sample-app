@@ -1,21 +1,22 @@
-# k8s 환경에서 SprintBoot 어플리케이션 배포하기
+# k8s 환경에서 Prometheus 기반 모니터링 환경구성
+
+## k8s 구성도
+
+
+
+
+
+
 
 * 시스템 구성 Component
 
 | Component       | 용도              |          버전 |
 | :----------     | :---------------: | :-----------: |
-| Kubernetes      | 인프라/서비스 배포 |    git status |
+| Kubernetes      | 인프라/서비스 배포 |    v1.24      |
 | Grafana         |   모니터링 대쉬보드|   V8.5.3      |
-| Prometheus      |   데이터 수집      |      git diff |
+| Prometheus      |   데이터 수집      |    2.x        |
 | Tekton pipeline |    CI/CD 구현     |      v0.27.0   |
 | Tekton dashboard|  tekton 대쉬보드  |       v0.31.4  |
-
-
-## k8s 구성도
-
-아래와 같이 구성됨
-
-
 
 ## 어플리케이션 구성
 
