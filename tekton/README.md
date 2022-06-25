@@ -7,6 +7,8 @@
 
 
 ## tekton 설치
+
+* takton 엔진/대쉬보드를 구성하며 yaml을 이용한 설치로 진행(https://tekton.dev/docs/pipelines/install/)
 ```text
 # tekton engine install
 $ kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.31.4/release.yaml
@@ -48,7 +50,7 @@ tekton-pipelines-webhook      ClusterIP   10.104.237.72   <none>        9090/TCP
 
 ```
 
-* tekton 대쉬보스 접속 URL http://$k8s클러스터IP:32731
+* tekton 대쉬보드 접속 URL http://$k8s클러스터IP:32731
 <img src="images/tekton-dashboard.jpg" align="center" />
 
 ## tekton Task/pipeline
