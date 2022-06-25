@@ -1,6 +1,8 @@
 # tekton 구성
 
 ## tekton CI/CD 구성
+
+* tekton 을 이용하여 CI/CD의 piepline을 생성하여 git에 있는 소스를가지고 maven 빌드, 컨테이너이미지 생성, k8s 배포까지의 프로세스를 나타낸다. 
 <img src="images/tekton-cicd.jpg" align="center" />
 
 
@@ -88,7 +90,7 @@ sudo tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
 
 ### tekton pipeline
 
-tekton ci/cd 구성에 필요한 task를 엮어서 하나의 pipeline을 생성하여 소스Clone -> maven 빌드 -> 이미지 빌드/푸시(dockerhub) -> k8s 배포 순으로 작성함.
+tekton ci/cd 구성에 필요한 task를 수행순서에 따라 pipeline을 생성하여 git-clone -> maven -> 이미지 빌드/푸시(dockerhub) -> deploy(k8s deploy)순으로 작성
 
 ```text
 apiVersion: tekton.dev/v1beta1
