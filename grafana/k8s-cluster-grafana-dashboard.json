@@ -25,7 +25,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1656087663428,
+  "iteration": 1656136172757,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -4139,7 +4139,7 @@
           "value": ""
         },
         "datasource": {
-          "type": "prometheus"    
+          "type": "prometheus"          
         },
         "definition": "",
         "hide": 2,
@@ -4192,8 +4192,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Kubernetes / Compute Resources / Cluster",
-  "uid": "efa86fd1d0c121a26444b636a3f509a8",
+  "title": "Kubernetes / Compute Resources / Cluster",  
   "version": 1,
   "weekStart": ""
 }

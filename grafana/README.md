@@ -100,7 +100,7 @@ Grafana에서는 AlertRule을 통해서 알람을 여러채널(Email, Slack, LIN
 
 ### 알림확인
 
-
+"부하완료후 캡처필요"
 
 
 
