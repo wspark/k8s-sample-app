@@ -2,7 +2,7 @@
 
 ## tekton CI/CD 구성
 
-* tekton 을 이용하여 CI/CD의 piepline을 생성하여 git에 있는 소스를가지고 maven 빌드, 컨테이너이미지 생성, k8s 배포까지의 프로세스를 나타낸다. 
+* tekton 을 이용하여 git-clone -> maven build -> image build/push -> deploy(k8s) 의 CI/CD를 구현함.
 <img src="images/tekton-cicd.jpg" align="center" />
 
 
