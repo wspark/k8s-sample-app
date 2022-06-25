@@ -46,7 +46,7 @@ tekton-pipelines-webhook      ClusterIP   10.104.237.72   <none>        9090/TCP
 
 ```
 
-* http://$k8s클러스터IP:32731
+* tekton 대쉬보스 접속 URL http://$k8s클러스터IP:32731
 <img src="images/tekton-dashboard.jpg" align="center" />
 
 ## tekton Task/pipeline
@@ -71,7 +71,7 @@ $ kubectl create -f pipeline.yaml
 
 ### tekton workspace(PVC 생성)
 
-* tekton pipeline 수행간에 데이터 저장용 workspace 용도
+* tekton pipeline 수행간에 데이터 저장용 workspace
 ```text
 kubectl create -f tekton-pv.yaml 
 kubectl create -f tekton-pvc.yaml 
@@ -91,24 +91,33 @@ sudo tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
 tekton ci/cd 구성에 필요한 task를 엮어서 하나의 pipeline을 생성하여 소스Clone -> maven 빌드 -> 이미지 빌드/푸시(dockerhub) -> k8s 배포 순으로 작성함.
 
 * git-clone task
+```text
 params.url: git 저장소 주소
-Ex)https://github.com/wspark/springboot-demo
+Ex)https://github.com/wspark/k8s-sample-app
+```
 
 * maven task
+```text
 params.GOALS : maven 수행시 수행되는 파라미터
-Ex)maven package
+params.CONTEXT: pom 파일위치
+Ex)params.GOALS: package
+Ex)params.CONTEXT: springboot-sample
+```
 
-* buildah
+* buildah task 
+```text
 params.IMAGE: 컨테이너 빌드후 만들어지는 이미지명
-params.CONTEXT: git 레포의 dockerfile 위치
-params.DOCKERFILE: git 레포의 docker파일명
+params.CONTEXT: git repo의 dockerfile 위치
+params.DOCKERFILE: git repo의 docker파일명
 Ex) params.IMAGE: docker.io/wspark83/springboot:demo-v1.2
 Ex) params.CONTEXT: springboot-sample
 Ex) params.DOCKERFILE: ./Dockerfile
-
-* kubernetes-actions 
+```
+* kubernetes-actions task 
+```text
 params.script: kubectl 커맨드를 같이 수행할 파라미터
 Ex) params.script: kubectl set image deployment springboot springboot=docker.io/wspark83/springboot:demo-v1.2 --namespace wspark
+```
 
 ### tekton pipelinerun/log
 
@@ -129,7 +138,7 @@ $ tkn pipelinerun logs tekton-pipeline-demo-run-sjl4g -f -n tekton-pipelines
 ### tekton pipelinerun deploy 실패
 
 * pipeline 수행시 tekton-pipelines 프로젝트의 default serviceaccout로 수행하는데 해당 account가 배포하려는 프로젝트에 권한이 없어
-아래와 같이 에러 발생하면 clusterrole,clusterrolebind 추가가 필요
+에러 발생하면 clusterrole,clusterrolebind 추가
 
 ```text
 ## error message
