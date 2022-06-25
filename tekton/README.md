@@ -78,13 +78,68 @@ kubectl create -f tekton-pvc.yaml
 ```
 ## tekton 수행
 
+### tekton binary 설치(http://github.com/tektoncd/cli)
+
+```text
+curl -LO https://github.com/tektoncd/cli/releases/download/v0.24.0/tkn_0.24.0_Linux_x86_64.tar.gz
+# Extract tkn to your PATH (e.g. /usr/local/bin)
+sudo tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
+```
+
+### tekton pipeline
+
+tekton ci/cd 구성에 필요한 task를 엮어서 하나의 pipeline을 생성하여 소스Clone -> maven 빌드 -> 이미지 빌드/푸시(dockerhub) -> k8s 배포 순으로 작성함.
+
+* git-clone task
+params.url: git 저장소 주소
+Ex)https://github.com/wspark/springboot-demo
+
+* maven task
+params.GOALS : maven 수행시 수행되는 파라미터
+Ex)maven package
+
+* buildah
+params.IMAGE: 컨테이너 빌드후 만들어지는 이미지명
+params.CONTEXT: git 레포의 dockerfile 위치
+params.DOCKERFILE: git 레포의 docker파일명
+Ex) params.IMAGE: docker.io/wspark83/springboot:demo-v1.2
+Ex) params.CONTEXT: springboot-sample
+Ex) params.DOCKERFILE: ./Dockerfile
+
+* kubernetes-actions 
+params.script: kubectl 커맨드를 같이 수행할 파라미터
+Ex) params.script: kubectl set image deployment springboot springboot=docker.io/wspark83/springboot:demo-v1.2 --namespace wspark
+
+### tekton pipelinerun/log
+
+* tkn cli로 pipeline 수행시 pipeline 이름/workspace/claimeName을 파라미터로 실행함
+```text
+# pipeline 수행
+$ tkn pipeline start tekton-pipeline-demo  --workspace name=pipeline-shared-data,claimName=tekton -n tekton-pipelines
+PipelineRun started: tekton-pipeline-demo-run-sjl4g
+# pipelinelog 확인
+$ tkn pipelinerun logs tekton-pipeline-demo-run-sjl4g -f -n tekton-pipelines 
+
+```
+
+* teton dashboard를 통해서도 로그 확인가능
+<img src="images/tekton-dashboard-pipelinerun-log.jpg" align="center" />
 
 
+### tekton pipelinerun deploy 실패
 
+* pipeline 수행시 tekton-pipelines 프로젝트의 default serviceaccout로 수행하는데 해당 account가 배포하려는 프로젝트에 권한이 없어
+아래와 같이 에러 발생하면 clusterrole,clusterrolebind 추가가 필요
 
-### tekton pipelinerun
+```text
+## error message
+Error from server (Forbidden): deployments.apps "springboot" is forbidden: User "system:serviceaccount:tekton-pipelines:default" cannot get resource "deployments" in API group "apps" in the namespace "wspark"
 
-### tekton pipelinerun log
+# clusterrole 생성
+kubectl create -f clusterrole.yaml -n tekton-pipelines
+# clusterrolebindg 
+kubectl create -f clusterrolebinding.yaml -n tekton-pipelines
 
+```
 
 
