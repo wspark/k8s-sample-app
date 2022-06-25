@@ -68,10 +68,6 @@ kubectl create -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/b
 kubectl create -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/kubernetes-actions/0.2/kubernetes-actions.yaml -n tekton-pipelines
 
 ```
-### tekton pipeline
-```text
-$ kubectl create -f pipeline.yaml
-```
 
 ### tekton workspace(PVC 생성)
 
@@ -93,6 +89,11 @@ sudo tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
 ### tekton pipeline
 
 tekton ci/cd 구성에 필요한 task를 수행순서에 따라 pipeline을 생성하여 git-clone -> maven -> 이미지 빌드/푸시(dockerhub) -> deploy(k8s deploy)순으로 작성
+
+```text
+# pipeline 생성
+$ kubectl create -f pipeline.yaml
+```
 
 ```text
 apiVersion: tekton.dev/v1beta1
