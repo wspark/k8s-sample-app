@@ -1,8 +1,8 @@
 
 # grafana 구성
 
-prometheus 에서 수집되는 데이터를 grafana에서 시각화하여 보여주는 도구이며 알림설정을 통해 여러 채널에 알람을 보낼 수 있다.
-본 구성에서는 K8s 클러스터/Springboot 어플리케이션을 모니터링/알림 기능 구현을 보여준다.
+다양항 수집서버의에서 제공되는 데이터를 시각화하여 보여주는 모니터링 도구이며 알림설정을 통해 여러 채널에 알람을 보낼 수 있다.
+본 구성에서는 Prometheus와 연계하여 K8s 클러스터/Springboot 어플리케이션을 모니터링/알림 기능 구현을 보여줌.
 
 ## grafana 설치
 
@@ -66,29 +66,36 @@ k8s 클러스터에 대한 대쉬보드를 구성하였으며 클러스터의 �
 
 <img src="images/grafana-dashboard-k8s-cluster.jpg" align="center" />
 
-### SpringBoot 샘플어플리케이션 구성
+### JVM(Actuator)모니터링 구성
 
-SprintBoot 기반의 어플리케이션을 모니터링 하기 위해서는 Actuator라는 모듈의 설정을 통해 prometheus에 springboot의 metric을 연계 할 수 있으며
-호출에 대한 request 건수/Respose 시간, JVM 사용량 등을 구성하였음
+* SpringBoot에 Actuator 모듈을 통해 Prometheus가 읽을 수 있는 metrics를 제공하여 Grafana내에서 모니터링이 가능함.
 
-"완료후 캡처필요"
+* 기본적인 Metric 외에 SpringBoot내의 커스텀 API에 대한 모니터링이 가능하며 본 예제에서는 Micrometer의 Timer 객체를 통해 
+각 API들의 응답시간을 추가하였음
+
+"부하완료후 캡처필요"
 
 
+## grafana 알림설정 
 
-## grafana 알림설정 설정
-
-Grafana에서는 AlertRule을 통해서 특정조건일 경우 알람을 여러채널(Email, Slack, LINE 등)로 보낼 수 있으며
+Grafana에서는 AlertRule을 통해서 알람을 여러채널(Email, Slack, LINE 등)로 보낼 수 있으며
 샘플에서는 LINE 메신저로 알람을 보내도록 구성하였음(Line의 token은 https://notify-bot.line.me 에서 발급)
 
-### 알림항목
-k8s 클러스터 노드가 1개 이상 NotReady 인 경우
-k8s 클러스터 노드 CPU사용률이 입계치(50%) 이상인 경우
+<img src="images/grafana-contact-point-line.jpg" align="center" />
 
-springboot pod down 인 경우
-응답지연/cpu 사용량/스레드 사용량 입계치 이상일 경우 
+### 알림항목
+
+* k8s 클러스터 노드가 1개 이상 NotReady 인 경우
+* k8s 클러스터 노드 CPU사용률이 임계치 이상인 경우
+
+* SpringBoot 스레드(Runnable Status) 임계치 이상인 경우
+* SpringBoot 커넥션풀(max) 임계치 이상인 경우
+
+임계치의 경우 운영환경에서 모니터링하여 적절한 값을 정해야하는데 알림발생을 위해 타이트하게 적용
 
 
 ### 알림확인
+
 
 
 
