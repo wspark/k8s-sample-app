@@ -9,11 +9,11 @@
 
 | Component       | 용도              |          버전 |
 | :----------     | :---------------: | :-----------: |
-| Kubernetes      | 인프라/서비스 배포 |    v1.24      |
-| Grafana         |   모니터링 대쉬보드|   V8.5.3      |
-| Prometheus      |   데이터 수집      |    2.x        |
-| Tekton pipeline |    CI/CD 구현     |      v0.27.0   |
-| Tekton dashboard|  tekton 대쉬보드  |       v0.31.4  |
+| [Kubernetes](https://github.com/wspark/k8s-sample-app/tree/main/k8s)      | 인프라/서비스 배포 |    v1.24      |
+| [Grafana](https://github.com/wspark/k8s-sample-app/tree/main/grafana)         |   모니터링 대쉬보드|   V8.5.3      |
+| [Prometheus](https://github.com/wspark/k8s-sample-app/tree/main/prometheus)    |   데이터 수집      |    2.x        |
+| [Tekton pipeline](https://github.com/wspark/k8s-sample-app/tree/main/tekton) |    CI/CD 구현     |      v0.27.0   |
+| [Tekton dashboard](https://github.com/wspark/k8s-sample-app/tree/main/tekton)|  tekton 대쉬보드  |       v0.31.4  |
 
 ## 어플리케이션 구성
 
