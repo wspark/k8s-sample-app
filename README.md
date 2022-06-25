@@ -47,14 +47,6 @@
 
 
 
-## API 확인
-
-* Author 추가
-<img src="./springboot-sample/images/spring-api-post.jpg" align="center" />
-
-* Author 리스트 확인
-<img src="./springboot-sample/images/spring-api-get.jpg" align="center" />
-
 ## Custom API Endpoint 추가
 
 ### Actuator 설정
@@ -80,14 +72,6 @@ import io.micrometer.core.annotation.Timed;
     }
 ```
 ### SpringBoot 어플리케이션 컨네이너 이미지 만들기
-* mariadb or mysql DB 필요(설치/계정생성 방법 외부 참고필요) 
-```text
-# application.properties 파일생성(src/main/resources)
-spring.datasource.url=jdbc:mysql://10.65.40.100:3306/wspark
-spring.datasource.username=root
-spring.datasource.password=paasword
-spring.jpa.hibernate.ddl-auto=update
-```
 
 * springboot 소스 빌드
 ```text
@@ -149,6 +133,14 @@ springboot-demo   NodePort   10.101.65.210   <none>        8080:31236/TCP   2d1h
 curl 10.65.41.81:31236/api/library/author
 [{"id":1,"firstName":"Wspark","lastName":"Ko"},{"id":2,"firstName":"KimTaeHee","lastName":"Ko"},{"id":3,"firstName":"parkwonseok","lastName":"Ko"}]
 ```
+
+## API 확인
+
+* Author 추가
+<img src="./springboot-sample/images/spring-api-post.jpg" align="center" />
+
+* Author 리스트 확인
+<img src="./springboot-sample/images/spring-api-get.jpg" align="center" />
 
 
 ### Prometheus 설정

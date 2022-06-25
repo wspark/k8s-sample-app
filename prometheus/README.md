@@ -65,3 +65,13 @@ prometheus-server   NodePort    10.101.30.136    <none>        80:32595/TCP   47
 * 브라우져로 http://${k8s클러스터IP:32595}
 
 <img src="images/prometheus-dashboard.jpg" align="center" />
+
+
+### Prometheus 수집확인
+
+* prometheus dashboard 접속 -> Target 
+<img src="./images/spring-prometheus-target.jpg" align="center" />
+
+
+* custom metric 확인(어플리케이션에서 제공되는 metric)
+<img src="./images/spring-prometheus-custom-metric.jpg" align="center" />
