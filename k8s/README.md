@@ -77,7 +77,7 @@ systemctl daemon-reload
 systemctl start crio
 systemctl enable crio
 ```
-### host 등록
+### /etc/host 등록
 ```text
 10.65.41.81 wspark-kube-mas01
 10.65.41.84 wspark-kube-worker01
