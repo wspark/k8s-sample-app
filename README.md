@@ -83,7 +83,7 @@ import io.micrometer.core.annotation.Timed;
     }
 ```
 ### SpringBoot 어플리케이션 컨네이너 이미지 만들기
-* mariadb or mysql DB 필요(외부 설치방법 참고필요) 
+* mariadb or mysql DB 필요(설치/계정생성 방법 외부 참고필요) 
 ```text
 # application.properties 파일생성(src/main/resources)
 spring.datasource.url=jdbc:mysql://10.65.40.100:3306/wspark
@@ -109,12 +109,16 @@ export IMAGE_NAME=wspark83/springboot
 export REGISTRY="docker.io"
 export TAG=demo-v1.0
 
-#컨테이너 이미지 빌드 및 Push(build.sh)
+#컨테이너 이미지 빌드 및 Push
+# build.sh 내용
 #!/bin/sh
 . ./env.sh
 buildah bud --format=docker -t ${REGISTRY}/${IMAGE_NAME}:${TAG} ../
 buildah login -u wspark83 -p $password ${REGISTRY}
 buildah push  ${REGISTRY}/${IMAGE_NAME}:${TAG} 
+
+#build.sh 실행
+$ ./build.sh
 
 # Dockerfile
 # 소스를 내부 컨테이너에 복사하여 java로 기동
