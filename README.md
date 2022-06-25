@@ -103,3 +103,14 @@ import io.micrometer.core.annotation.Timed;
           - targets:
             -  10.65.41.81:31236
 ```
+
+* Prometheus 설치는 [Prometheus 구성](http://github.com/wspark/k8s-sample-app/tree/main/prometheus/) 참고
+ 
+### Prometheus 수집확인
+
+* prometheus dashboard 접속
+<img src="./springboot-sample/images/spring-prometheus-target.jpg" align="center" />
+
+
+* custom metric 확인
+<img src="./springboot-sample/images/spring-prometheus-custom-metric.jpg" align="center" />
