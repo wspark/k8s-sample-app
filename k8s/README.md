@@ -5,8 +5,8 @@
 | OS Verison   | IP             | Server Type    | HostName               |     Spect       |
 | :----------  | :----------:    | :----------    | :--------------------: | :-------------: |
 | CentOS 7.9    | 10.65.40.81    | Master         | wspark-kube-mas01      | 2vcpus, 4G Ram |
-| CentOS 7.9    | 10.65.40.81    | Worker         | wspark-kube-worker01   | 2vcpus, 8G Ram |
-| CentOS 7.9    | 10.65.40.81    | Worker         | wspark-kube-worker02   | 2vcpus, 8G Ram |
+| CentOS 7.9    | 10.65.40.84    | Worker         | wspark-kube-worker01   | 2vcpus, 8G Ram |
+| CentOS 7.9    | 10.65.40.85    | Worker         | wspark-kube-worker02   | 2vcpus, 8G Ram |
 
 ## All Nodes 
 ### OS update and reboot
