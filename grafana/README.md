@@ -86,12 +86,16 @@ Grafana에서는 AlertRule을 통해서 알람을 여러채널(Email, Slack, LIN
 ### 알림항목
 
 * k8s 클러스터 노드가 1개 이상 NotReady 인 경우
-* k8s 클러스터 노드 CPU사용률이 임계치 이상인 경우
+<img src="images/grafana-alert-cluster-nodedown.jpg" align="center" />
+<img src="images/grafana-alert-cluster-nodedown2.jpg" align="center" />
+
 
 * SpringBoot 스레드(Runnable Status) 임계치 이상인 경우
-* SpringBoot 커넥션풀(max) 임계치 이상인 경우
+<img src="images/grafana-alert-spring-thread.jpg" align="center" />
+<img src="images/grafana-alert-spring-thread2.jpg" align="center" />
 
-임계치의 경우 운영환경에서 모니터링하여 적절한 값을 정해야하는데 알림발생을 위해 타이트하게 적용
+
+* 임계치의 경우 운영환경에서 모니터링하여 적절한 값을 정해야하는데 알림발생을 위해 타이트하게 적용
 
 
 ### 알림확인
