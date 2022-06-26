@@ -1,11 +1,5 @@
 # k8s 환경에서 Prometheus 기반 모니터링 환경구성
 
-
-## k8s 구성도
-
-
-
-
 ## k8s 시스템 구성
 
 | Component       | 용도              |          버전 |
