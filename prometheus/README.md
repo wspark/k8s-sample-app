@@ -7,14 +7,14 @@
 ### prometheus helm 설치
 ```text
 # helm 으로 repo 추가 및 설치
-$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-$ helm install prometheus prometheus-community/prometheus -n monitoring
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm install prometheus prometheus-community/prometheus -n monitoring
 ```
 ### prometheus spring actuator 설정 설치
 * Actuator 설정된 SpringBoot 서비스포트, Metric URI 정보필요 [링크](https://github.com/wspark/k8s-sample-app#custom-api-endpoint-%EC%B6%94%EA%B0%80)
 ```text
 # helm chart git clone 후 value 추가 후 설치
-$ git clone https://github.com/prometheus-community/helm-charts
+git clone https://github.com/prometheus-community/helm-charts
 vi ./charts/prometheus/values.yaml
     scrape_configs:
       - job_name: prometheus
@@ -28,7 +28,7 @@ vi ./charts/prometheus/values.yaml
           - targets:
             -  10.65.41.81:31236
 # prometheus 설치
-$helm install -n monitoring prometheus -f values.yaml .            
+helm install -n monitoring prometheus -f values.yaml .            
 ```
 ### prometheus pvc  생성
 
@@ -36,13 +36,13 @@ $helm install -n monitoring prometheus -f values.yaml .
 
 ```text
 # pv/pvc 생성
-$ kubectl create -f prometheus-pv.yaml
-$ kubectl create -f prometheus-pvc.yaml
-$ kubectl create -f prometheus-alertmanager-pv.yaml
-$ kubectl create -f prometheus-alertmanager-pvc.yaml
+kubectl create -f prometheus-pv.yaml
+kubectl create -f prometheus-pvc.yaml
+kubectl create -f prometheus-alertmanager-pv.yaml
+kubectl create -f prometheus-alertmanager-pvc.yaml
 
 # pvc 생성확인
-$ kubectl get pvc -n monitoring
+kubectl get pvc -n monitoring
 NAME                      STATUS   VOLUME                       CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 prometheus-alertmanager   Bound    prometheus-alertmanager-pv   10Gi       RWX                           47h
 prometheus-server         Bound    prometheus-server-pv         10Gi       RWX                           47h
@@ -53,8 +53,8 @@ prometheus-server         Bound    prometheus-server-pv         10Gi       RWX  
 * 외부접속을 위해 service를 NodePort로 변경
 
 ```text
-$ kubectl -n monitoring  patch svc/prometheus-server -p '{"spec":{"type":"NodePort"}}
-$ kubectl get svc -n monitoring
+kubectl -n monitoring  patch svc/prometheus-server -p '{"spec":{"type":"NodePort"}}
+kubectl get svc -n monitoring
 NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 prometheus-server   NodePort    10.101.30.136    <none>        80:32595/TCP   47h
 [root@wspark-kube-mas01 ~]# 

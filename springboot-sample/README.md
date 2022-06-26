@@ -87,15 +87,15 @@ $ ./build.sh
 
 ```text
 # namespace 생성
-$ kubectl create namespace wspark
+kubectl create namespace wspark
 # deployment 생성
-$ kubectl create deployment springboot-demo --image docker.io/wspark83/springboot:demo-v1.0  -n wspark
+kubectl create deployment springboot-demo --image docker.io/wspark83/springboot:demo-v1.0  -n wspark
 
 # 외부접속용 svc nodeport 변경
-$ kubectl expose deployment springboot-demo --port 8080 --target-port 8080 --type NodePort -n wspark
+kubectl expose deployment springboot-demo --port 8080 --target-port 8080 --type NodePort -n wspark
 
 # nodeport 확인
-$ kubectl get svc -n wspark
+kubectl get svc -n wspark
 NAME              TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 springboot-demo   NodePort   10.101.65.210   <none>        8080:31236/TCP   2d1h
 

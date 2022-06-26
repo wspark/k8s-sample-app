@@ -11,12 +11,12 @@
 * takton 엔진/대쉬보드를 구성하며 yaml을 이용한 설치로 진행(https://tekton.dev/docs/pipelines/install/)
 ```text
 # tekton engine install
-$ kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.31.4/release.yaml
+kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.31.4/release.yaml
 # tekton dashboard install
-$ kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
 
 # tekton component 확인
-$ kubectl get all -n tekton-pipelines
+kubectl get all -n tekton-pipelines
 NAME                                              READY   STATUS    RESTARTS   AGE
 pod/tekton-dashboard-55f695f747-grtsv             1/1     Running   0          101s
 pod/tekton-pipelines-controller-844fdd85b-wsxmz   1/1     Running   0          2m47s
@@ -41,8 +41,8 @@ NAME                                                           REFERENCE        
 horizontalpodautoscaler.autoscaling/tekton-pipelines-webhook   Deployment/tekton-pipelines-webhook   <unknown>/100%   1         5         1          2m47s
 
 # tekton svc NodePort 변경
-$ kubectl patch service/tekton-dashboard -p '{"spec":{"type":"NodePort"}}' -n tekton-pipelines
-$ kubectl get svc -n tekton-pipelines
+kubectl patch service/tekton-dashboard -p '{"spec":{"type":"NodePort"}}' -n tekton-pipelines
+kubectl get svc -n tekton-pipelines
 NAME                          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                              AGE
 tekton-dashboard              NodePort    10.107.63.255   <none>        9097:32731/TCP                       4m30s
 tekton-pipelines-controller   ClusterIP   10.102.29.12    <none>        9090/TCP,8008/TCP,8080/TCP           5m36s
@@ -83,7 +83,7 @@ kubectl create -f tekton-pvc.yaml
 ```text
 curl -LO https://github.com/tektoncd/cli/releases/download/v0.24.0/tkn_0.24.0_Linux_x86_64.tar.gz
 # Extract tkn to your PATH (e.g. /usr/local/bin)
-sudo tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
+tar xvzf tkn_0.24.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
 ```
 
 ### tekton pipeline
@@ -92,7 +92,7 @@ tekton ci/cd 구성에 필요한 task를 수행순서에 따라 pipeline을 생�
 
 ```text
 # pipeline 생성
-$ kubectl create -f pipeline.yaml -n tekton-pipelines
+kubectl create -f pipeline.yaml -n tekton-pipelines
 ```
 
 ```text
@@ -207,10 +207,10 @@ Ex) params.script: kubectl set image deployment/springboot-demo springboot=docke
 * tkn cli로 pipeline 수행시 pipeline 이름/workspace/claimeName을 파라미터로 실행함
 ```text
 # pipeline 수행
-$ tkn pipeline start tekton-pipeline-demo  --workspace name=pipeline-shared-data,claimName=tekton -n tekton-pipelines
+tkn pipeline start tekton-pipeline-demo  --workspace name=pipeline-shared-data,claimName=tekton -n tekton-pipelines
 PipelineRun started: tekton-pipeline-demo-run-sjl4g
 # pipelinelog 확인
-$ tkn pipelinerun logs tekton-pipeline-demo-run-sjl4g -f -n tekton-pipelines 
+tkn pipelinerun logs tekton-pipeline-demo-run-sjl4g -f -n tekton-pipelines 
 
 ```
 

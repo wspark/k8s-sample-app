@@ -2,8 +2,11 @@
 
 ## 구성 현황 ###
 
+* k8s 관리를 위한 Bastion 서버를 추가생성
+
 | OS Verison   | IP             | Server Type    | HostName               |     Spect       |
 | :----------  | :----------:    | :----------    | :--------------------: | :-------------: |
+| CentOS 7.9    | 10.65.40.80    | Management     | wspark-kube-bastion    | 2vcpus, 8G Ram |
 | CentOS 7.9    | 10.65.40.81    | Master         | wspark-kube-mas01      | 2vcpus, 4G Ram |
 | CentOS 7.9    | 10.65.40.84    | Worker         | wspark-kube-worker01   | 2vcpus, 8G Ram |
 | CentOS 7.9    | 10.65.40.85    | Worker         | wspark-kube-worker02   | 2vcpus, 8G Ram |
@@ -32,7 +35,7 @@ yum clean all && sudo yum -y makecache
 yum -y install epel-release vim git curl wget kubelet kubeadm kubectl --disableexcludes=kubernetes
 ```
 ### firewalld 비활성화
-* 개발환경으로 firewalld 비활성화
+* 테스으 환경으로 firewalld 비활성화
 ```text
 systemctl disable --now firewalld
 ```
@@ -143,4 +146,22 @@ NAME                   STATUS   ROLES    AGE    VERSION
 wspark-kube-mas01      Ready    master   4d3h   v1.24.2
 wspark-kube-worker01   Ready    worker   4d3h   v1.24.2
 wspark-kube-worker02   Ready    worker   4d3h   v1.24.2
+```
+
+## Bastion 서버에서 작업
+* 클러스터 구성 후 Bastion 서버에서 클러스터 작업을 위한 패키지 설치
+```
+yum install kubelet -y
+
+# k8s config 파일 복사
+cp wspark-kube-mas01:/root/.kube/config /root/.kube/config
+
+# Node 확인
+kubectl get nodes
+NAME                   STATUS    AGE
+wspark-kube-mas01      Ready     4d
+wspark-kube-worker01   Ready     4d
+wspark-kube-worker02   Ready     4d
+[root@bastion git]# 
+
 ```

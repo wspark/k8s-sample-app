@@ -1,5 +1,6 @@
 # k8s 환경에서 Prometheus 기반 모니터링 환경구성
 
+
 ## k8s 구성도
 
 
@@ -47,13 +48,22 @@
 ```
 java -jar -XX:MaxPermSize=512m ngrinder-controller-3.5.5-p1.war
 ```
-* Admin 접속 : http://localhost:8080
+* Admin 접속 : http://10.65.41.80:8080
 
+* Controller 
 
 ### 시나리오 작성
 
 ### 부하발생
 
 
-## APM Tool 설치
+
+
+
+
+## TO-DO list
+* 로깅시스템 구성(EFK)
+* Istio 구성
+* Argocd 구성
+
 
