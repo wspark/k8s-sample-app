@@ -73,7 +73,6 @@ prometheus의 URL은 k8s내에 동일 프로젝트에 있어 svc주소로 접근
 * 기본적인 Metric 외에 SpringBoot내의 커스텀 API에 대한 모니터링이 가능하며 본 예제에서는 Micrometer의 Timer 객체를 통해 
 각 API들의 응답시간을 추가하였음
 
-
 <img src="images/grafana-dashboard-k8s-jvm.jpg" align="center" />
 
 
@@ -99,16 +98,14 @@ prometheus의 URL은 k8s내에 동일 프로젝트에 있어 svc주소로 접근
 * 임계치의 경우 운영환경에서 모니터링하여 적절한 값을 정해야하는데 알림발생을 위해 타이트하게 적용
 
 
-### 알림확인 from Line
+### 문제상황 알림확인(alert status and Line)
 
 * k8s 클러스터 노드 1개 shutdown 시
-<img src="images/grafana-alert-line-nodedown.jpg" align="center" />
 <img src="images/grafana-alert-dashboard-nodedown.jpg" align="center" />
 
 * 부하테스트시 스레드 임계치 이상인 경우
-
-<img src="images/grafana-alert-line-thread.jpg" align="center" />
 <img src="images/grafana-alert-dashboard-thread.jpg" align="center" />
 
-
+* Line 알람
+<img src="images/grafana-alert-line.jpg" align="center" />
 
