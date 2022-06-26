@@ -75,3 +75,8 @@ prometheus-server   NodePort    10.101.30.136    <none>        80:32595/TCP   47
 
 * custom metric 확인(어플리케이션에서 제공되는 metric)
 <img src="./images/spring-prometheus-custom-metric.jpg" align="center" />
+
+
+## Reference 참고 링크
+* [prometheus install](https://github.com/prometheus-community/helm-charts)
+* [prometheus actuator](https://www.tutorialworks.com/spring-boot-prometheus-micrometer/)

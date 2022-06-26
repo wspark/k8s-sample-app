@@ -3,7 +3,7 @@
 * 도서대출 API 목록
 
 | URI                        | HTTP 메서드 |          설명           |
-| :----------               | :----------:| :----------------------:|
+| :----------                | :----------:| :----------------------:|
 |/api/library/book           |   GET       |  도서 전체 조회          |
 |/api/library/book?isbn=1919 |   GET       |  도서 ISBN으로 도서 조회 |
 |/api/library/boot/:id       |   GET       |  도서ID로 조회           |
@@ -112,3 +112,12 @@ curl 10.65.41.81:31236/api/library/author
 
 * Author 리스트 확인
 <img src="./images/spring-api-get.jpg" align="center" />
+
+
+
+
+## Reference 참고 링크
+* [start.spring.io](https://start.spring.io/)
+* [javatodev](https://javatodev.com/spring-boot-mysql)
+* [velog.io](https://velog.io/@windsekirun/Spring-Boot-Actuator-Micrometer%EB%A1%9C-Prometheus-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0)
+
