@@ -235,3 +235,7 @@ kubectl create -f clusterrolebinding.yaml -n tekton-pipelines
 ```
 
 
+## Reference 참고 링크
+* [tekton install](https://tekton.dev/docs/pipelines/install/)
+* [tekton task hub](https://hub.tekton.dev/) 
+* [tekton run issue](https://github.com/tektoncd/pipeline/issues/2236)
