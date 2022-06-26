@@ -11,7 +11,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm install prometheus prometheus-community/prometheus -n monitoring
 ```
 ### prometheus spring actuator 설정 설치
-* Actuator 설정된 SpringBoot 서비스포트, Metric URI 정보필요 [링크](https://github.com/wspark/k8s-sample-app#custom-api-endpoint-%EC%B6%94%EA%B0%80)
+* Actuator 설정된 SpringBoot 서비스포트, Metric URI 정보필요 
 ```text
 # helm chart git clone 후 value 추가 후 설치
 git clone https://github.com/prometheus-community/helm-charts

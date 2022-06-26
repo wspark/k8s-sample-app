@@ -11,8 +11,8 @@
 ### grafana helm repo 추가
 ```text
 # helm 으로 repo 추가 및 설치
-$ helm repo add grafana https://grafana.github.io/helm-charts
-$ helm repo list 
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo list 
 NAME                	URL                                               
 grafana             	https://grafana.github.io/helm-charts
 $ helm install grafana grafana/grafana -n monitoring
@@ -20,16 +20,16 @@ $ helm install grafana grafana/grafana -n monitoring
 ### grafana data 저장용 PVC 생성
 ```text
 # NFS 구성된 서버에 저장
-$ kubectl create -f grafana-pv.yaml
-$ kubectl create -f grafana-pvc.yaml
-$ kubectl get pvc -n monitoring
+kubectl create -f grafana-pv.yaml
+kubectl create -f grafana-pvc.yaml
+kubectl get pvc -n monitoring
 NAME                      STATUS   VOLUME                       CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 grafana                   Bound    grafana-pv                   10Gi       RWX                           8h
 ```
 
 ### grafana deployment 수정(PVC mapping)
 ```text
-$ kubectl edit deployment grafana -n monitoring
+kubectl edit deployment grafana -n monitoring
 
 124       - name: storage
 125         persistentVolumeClaim:
@@ -52,17 +52,17 @@ PY8gCebDmxjz5WkCSyiultcliorrCHMAPMFP5Duo
 
 ## grafana - prometheus 연계
 
-대쉬보드를 구성하기 위해서는 데이터가 필요한데 해당 데이터를 prometheus와 연계를 하기 위해서는 Datasource 등록을 해야함
+* 대쉬보드를 구성하기 위해서는 데이터가 필요한데 해당 데이터를 prometheus와 연계를 하기 위해서는 Datasource 등록을 해야함
 prometheus의 URL은 k8s내에 동일 프로젝트에 있어 svc주소로 접근할 수 있어 prometheus-server를 입력함
 
-[콘솔로긴 후 왼쪽 메뉴]
+* [콘솔로긴 후 왼쪽 메뉴]
 "Configuration -> DataSource ->  Add data source -> Prometheus [선택] -> URL : http://prometheus-server 입력 후 Save & Test 클릭
 
 <img src="images/grafana-datasource-prometheus.jpg" align="center" />
 
 ### k8s 클러스터 전체 모니터링 구성
 
-k8s 클러스터에 대한 대쉬보드를 구성하였으며 클러스터의 노드상태/CPU/메모리/디스크/네트워크 사용량에 대한 항목을 구성하였음
+* k8s 클러스터에 대한 대쉬보드를 구성하였으며 클러스터의 노드상태/CPU/메모리/디스크/네트워크 사용량에 대한 항목을 구성하였음
 
 <img src="images/grafana-dashboard-k8s-cluster.jpg" align="center" />
 

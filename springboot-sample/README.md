@@ -88,6 +88,7 @@ $ ./build.sh
 ```text
 # namespace 생성
 kubectl create namespace wspark
+
 # deployment 생성
 kubectl create deployment springboot-demo --image docker.io/wspark83/springboot:demo-v1.0  -n wspark
 
