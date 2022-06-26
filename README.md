@@ -90,11 +90,10 @@ sh ./ngrinder-agent/run_agent.sh
 
 <img src="./images/ngrinder-dashboard-performance-result.jpg" align="center" />
 
+## Reference 참고 링크
+* [nGrinder](https://github.com/naver/ngrinder) 
 
-## APM 적용
-* java 기반의 어플리케이션은 prometheus/actuator 적용으로 볼 수 있지만 WAS전용의 모니터링 Tool을 적용하여 좀 더 디테일한 항목을 볼 수 있다.
 
-### opensource의 scouter 구성
 
 
 
@@ -103,5 +102,6 @@ sh ./ngrinder-agent/run_agent.sh
 * 어플리케이션 MSA 형태로 변경(boot/auth/member)
 * Istio/Jager 구성하여 cricuitbreader 적용 및 distributed traceing 구현
 * Argocd 구성하여 배포자동화 및 멀티클러스터 배포 구현 
+* APM Scouter 구성
 
 

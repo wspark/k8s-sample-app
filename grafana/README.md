@@ -109,3 +109,8 @@ prometheus의 URL은 k8s내에 동일 프로젝트에 있어 svc주소로 접근
 * Line 알람
 <img src="images/grafana-alert-line.jpg" align="center" />
 
+
+## Reference 참고 링크
+* [grafana](https://github.com/grafana/helm-charts) 
+* [dashboard](https://grafana.com/grafana/dashboards/13694-jvm-actuator) 
+
