@@ -44,19 +44,50 @@
 
 ### 성능테스트용 tool(ngrinder?)
 
-* 설치
+* controller 설치
 ```
+# ngrinder3.5.5 설치
+wget https://github.com/naver/ngrinder/releases/download/ngrinder-3.5.5-p1-20210531/ngrinder-controller-3.5.5-p1.war
+
+# ngrinder controller 실행
 java -jar -XX:MaxPermSize=512m ngrinder-controller-3.5.5-p1.war
+
 ```
 * Admin 접속 : http://10.65.41.80:8080
 
-* Controller 
+* agent 설치
 
-### 시나리오 작성
+```
+# admin 콘솔접속 후 admin -> Download Agent 에서 다운가능
+sh ./ngrinder-agent/run_agent.sh
+```
+* Controller 및 Agent 설치 후 Admin 콘솔에서 확인(admin -> Agent Management 화면)
+
+<img src="./images/ngrinder-dashboard-agent.jpg" align="center" />
+
+
+
+### 스크립트 작성
+
+* 콘솔에서 Script 작성이 가능하며 sample 어플리케이션 API를 호출한다.
+
+<img src="./images/ngrinder-dashboard-script.jpg" align="center" />
+
+* 스크립트는 groovy로 작성 validate 확인 후 사용가능하다.
+
+<img src="./images/ngrinder-dashboard-validate.jpg" align="center" />
+
 
 ### 부하발생
 
+* 시나리오를 작성해야하며 기 작성된 스크립트를 실행하며 Agent/Vuser/테스트수행시간 등을 설정
 
+<img src="./images/ngrinder-dashboard-performance-test.jpg" align="center" />
+
+
+* 테스트 수행이 완료되면 Vuser/TPS/Error/Run time 등이 확인된다.
+
+<img src="./images/ngrinder-dashboard-performance-result.jpg" align="center" />
 
 
 
