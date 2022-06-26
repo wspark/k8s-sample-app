@@ -42,7 +42,7 @@
 
 ## 어플리케이션 성능테스트
 
-### 성능테스트용 tool(ngrinder?)
+### nGrinder 구성
 
 * controller 설치
 ```
@@ -59,6 +59,7 @@ java -jar -XX:MaxPermSize=512m ngrinder-controller-3.5.5-p1.war
 
 ```
 # admin 콘솔접속 후 admin -> Download Agent 에서 다운가능
+# agent 설치
 sh ./ngrinder-agent/run_agent.sh
 ```
 * Controller 및 Agent 설치 후 Admin 콘솔에서 확인(admin -> Agent Management 화면)
@@ -90,11 +91,17 @@ sh ./ngrinder-agent/run_agent.sh
 <img src="./images/ngrinder-dashboard-performance-result.jpg" align="center" />
 
 
+## APM 적용
+* java 기반의 어플리케이션은 prometheus/actuator 적용으로 볼 수 있지만 WAS전용의 모니터링 Tool을 적용하여 좀 더 디테일한 항목을 볼 수 있다.
+
+### opensource의 scouter 구성
+
 
 
 ## TO-DO list
-* 로깅시스템 구성(EFK)
-* Istio 구성
-* Argocd 구성
+* 로깅시스템 구성(EFK)하여 k8s/어플리케이션 로그 관리
+* 어플리케이션 MSA 형태로 변경(boot/auth/member)
+* Istio/Jager 구성하여 cricuitbreader 적용 및 distributed traceing 구현
+* Argocd 구성하여 배포자동화 및 멀티클러스터 배포 구현 
 
 
