@@ -11,7 +11,7 @@ buildah bud --format=docker -t ${REGISTRY}/${IMAGE_NAME}:${TAG} ../
 echo "======================================================="
 echo " Registry LOGIN -  ${CONTAINER_NAME} "
 echo "======================================================="
-buildah login -u wspark83 -p 0009dhtlq ${REGISTRY}
+buildah login -u wspark83 -p "password" ${REGISTRY}
 echo "======================================================="
 echo " Registry IMAGE PUSH -  ${CONTAINER_NAME} "
 echo "======================================================="
