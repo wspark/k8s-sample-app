@@ -1,4 +1,4 @@
-FROM wspark83/springboot:openjdk8
+FROM wspark83/springboot:openjdk8-custom
 
 ARG JAR_FILE=target/springboot-0.0.1-SNAPSHOT.jar
 
