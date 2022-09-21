@@ -4,7 +4,6 @@ metadata:
   labels:
     app: springboot-demo
   name: springboot-demo
-  namespace: wspark
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
