@@ -22,7 +22,7 @@ spec:
         app: springboot-demo
     spec:
       containers:
-      - image: docker.io/wspark83/springboot:demo-v1.2
+      - image: docker.io/wspark83/springboot:demo-v1.1
         imagePullPolicy: IfNotPresent
         name: springboot
         resources: {}
