@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: springboot-demo-gateway
+  namespace: wspark-test
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "springboot-demo-wspark-test.apps.ocp4.local"
+    - "springboot-demo-wspark-test2.apps.ocp4.local"
+    tls:
+      mode: SIMPLE
+      credentialName: istio-credential
