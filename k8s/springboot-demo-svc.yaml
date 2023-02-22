@@ -11,11 +11,12 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 31236
+  - name: http-8080
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: springboot-demo
   sessionAffinity: None
-  type: NodePort
+  type: ClusterIP
+
