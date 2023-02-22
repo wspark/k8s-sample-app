@@ -5,7 +5,6 @@ metadata:
     app: springboot-demo
   name: springboot-demo
 spec:
-  externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
